@@ -1,0 +1,140 @@
+body {
+    background-color: #9ceaef;
+}
+
+.dynapuff-umm {
+    font-family: "DynaPuff", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
+
+.msg-container{
+    margin:auto;
+    margin-bottom: -1%;
+    text-align: center;
+}
+
+#msg{
+    font-family: DynaPuff;
+    color: #197278;
+    font-size: 40px;
+}
+
+main{
+    margin-top: 30px;
+}
+/* .score{
+    width: 100vh;
+    margin: auto;
+}
+.left{
+    float: left;
+    font-family: DynaPuff;
+}
+.right{
+    float: right;
+    font-family: DynaPuff; 
+} */
+.game-board{
+    background-color: #68d8d6;
+    width: 30vw;
+    aspect-ratio: 1 / 1;
+    margin: auto;
+    padding: 2%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, 33.34%);
+    grid-template-rows: repeat(3, 33.34%);
+    border-radius: 1rem;
+    gap: 3%;
+}
+
+.cell{
+    background-color: #07beb8;
+    border-radius: 1rem;
+    font-family: DynaPuff;
+    font-size: 7rem;
+    color: #c4fff9;
+    text-align: center;
+}
+
+.lower-section{
+    padding: 20px;
+    width: 35vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#reset{
+    line-height: 250%;
+    width: 55%;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 0.5rem;
+    background-color: #07beb8;
+    border: 0px;
+    color: #c4fff9;
+    font-family: DynaPuff;
+    font-size: larger;
+}
+#new{
+    line-height: 250%;
+    width: 55%;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 0.5rem;
+    background-color: #07beb8;
+    border: 0px;
+    color: #c4fff9;
+    font-family: DynaPuff;
+    font-size: larger;
+}
+
+.hide{
+    display: none;
+}
+
+@media only screen and (max-width: 400px) {
+    .game-board {
+        width: 70vw;
+        padding: 4%;
+    }   
+    .cell{
+        font-size: 4rem;
+    }
+    .lower-section{
+        padding: 20px;
+        width: 80vw;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    .reset{
+        width: 55%;
+        line-height: 250%;
+        padding: 2%;
+        margin: 2%;
+        border-radius: 0.5rem;
+        background-color: #07beb8;
+        border: 0px;
+        color: #c4fff9;
+        font-family: DynaPuff;
+        font-size: large;
+    }
+
+    main{
+        margin-top: 50%;
+    }
+
+    #msg{
+        font-size: 24px;
+    }
+}
