@@ -5,6 +5,9 @@ let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 let turno = true;
 
+let oWins = 0;
+let xWins = 0;
+
 const winPatterns = [
     [0, 1, 2],
     [3, 4, 5],
@@ -16,11 +19,25 @@ const winPatterns = [
     [2, 4, 6]
 ];
 
-const resetGame = () =>{
+const resetGame = () => {
+    oWins = 0;
+    xWins = 0;
+    
+    document.querySelector("#score-o").innerText = `O Wins: ${oWins}`;
+    document.querySelector("#score-x").innerText = `X Wins: ${xWins}`;
+
+    newGame();
+}
+
+const newGame = () => {
     turno = true;
     enabledBoxes();
     msgContainer.classList.add("hide");
 }
+
+newGmBtn.addEventListener("click", newGame);
+resetBtn.addEventListener("click", resetGame);
+
 
 cells.forEach((cell) => {
     cell.addEventListener("click", () => {
@@ -59,11 +76,19 @@ const enabledBoxes = () => {
 const showWinner = (winner) => {
     msg.innerText = `${winner} won the game!`; 
     msgContainer.classList.remove("hide");
+
+    if (winner === "O") {
+        oWins++;
+        document.querySelector("#score-o").innerText = `O Wins: ${oWins}`;
+    } else if (winner === "X") {
+        xWins++;
+        document.querySelector("#score-x").innerText = `X Wins: ${xWins}`;
+    }
+
     disabledBoxes();
 }
 
 const checkWinner = () => {
-    // Check for a winner
     for (let pattern of winPatterns) {
         const [a, b, c] = pattern;
         if (cells[a].innerText &&
@@ -80,7 +105,7 @@ const checkWinner = () => {
     if (isDraw) {
         showDraw();
     }
-};
+}
 
 const showDraw = () => {
     msg.innerText = "It's a draw!"; 
@@ -88,5 +113,5 @@ const showDraw = () => {
     disabledBoxes();
 }
 
-newGmBtn.addEventListener("click",resetGame);
-resetBtn.addEventListener("click",resetGame);
+newGmBtn.addEventListener("click", newGame);
+resetBtn.addEventListener("click", resetGame);
