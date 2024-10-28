@@ -36,13 +36,13 @@ main {
     width: 25rem;
     aspect-ratio: 1 / 1;
     margin: auto;
-    padding: 2rem;
+    padding: 1rem;
     display: grid;
     position: relative;
     justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(3, 33.34%);
-    grid-template-rows: repeat(3, 33.34%);
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(3, 1fr);  
     border-radius: 1rem;
     gap: 3%;
 }
@@ -54,7 +54,7 @@ main {
     background-color: #07beb8;
     border-radius: 1rem;
     font-family: DynaPuff;
-    font-size: 7rem;
+    font-size: 6.5rem;
     color: #c4fff9;
     text-align: center;
 }
@@ -85,7 +85,7 @@ main {
     width: 100%;
     box-sizing: border-box;
     font-family: DynaPuff;
-    font-size: 1.5rem;
+    font-size: 1.45rem;
     color: #197278;
     position: absolute;
     top: -4rem;
@@ -104,6 +104,42 @@ main {
     pointer-events: none;
 }
 
-@media only screen and (max-width: 900px) {
+.highlight {
+    position: relative;
+    isolation: isolate;
+}
 
+.highlight::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 130%;
+    border-radius: 10px;
+    background-color: #68d8d6;
+    z-index: -1;
+}
+
+@media only screen and (max-width: 480px) {
+    .game-board{
+        width: 20rem;
+        padding: 0.8rem;
+    }
+
+    .lower-section button {
+        line-height: 100%;
+        font-size: larger;
+    }
+    .msg-container{
+        margin:auto;
+        height: 8.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .cell {
+        font-size: 4.5rem;
+        width: 100%;  
+        height: 100%;
+    }
 }

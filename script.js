@@ -19,6 +19,16 @@ const winPatterns = [
     [2, 4, 6]
 ];
 
+const updateTurnHighlight = () => {
+    if (turno) {
+        document.querySelector("#score-o").classList.add("highlight");
+        document.querySelector("#score-x").classList.remove("highlight");
+    } else {
+        document.querySelector("#score-o").classList.remove("highlight");
+        document.querySelector("#score-x").classList.add("highlight");
+    }
+};
+
 const resetGame = () => {
     oWins = 0;
     xWins = 0;
@@ -33,11 +43,11 @@ const newGame = () => {
     turno = true;
     enabledBoxes();
     msgContainer.classList.add("hide");
+    updateTurnHighlight();
 }
 
 newGmBtn.addEventListener("click", newGame);
 resetBtn.addEventListener("click", resetGame);
-
 
 cells.forEach((cell) => {
     cell.addEventListener("click", () => {
@@ -47,14 +57,14 @@ cells.forEach((cell) => {
 
         if (turno) {
             cell.innerText = "O";
-            turno = false;
         } else {
             cell.innerText = "X"; 
-            turno = true;
         }
+        turno = !turno; // Toggle the turn
         cell.classList.add('taken');
 
         checkWinner();
+        updateTurnHighlight(); // Update the highlight based on the new turn
     });
 });
 
@@ -115,3 +125,5 @@ const showDraw = () => {
 
 newGmBtn.addEventListener("click", newGame);
 resetBtn.addEventListener("click", resetGame);
+
+updateTurnHighlight();
