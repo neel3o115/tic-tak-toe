@@ -3,10 +3,11 @@ let resetBtn = document.querySelector("#reset");
 let newGmBtn = document.querySelector("#new");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
-let turno = true;
-
+let turno;
 let oWins = 0;
 let xWins = 0;
+
+let currentStartingPlayer = 'O';
 
 const winPatterns = [
     [0, 1, 2],
@@ -40,10 +41,28 @@ const resetGame = () => {
 }
 
 const newGame = () => {
-    turno = true;
+    turno = (currentStartingPlayer === 'O'); 
     enabledBoxes();
     msgContainer.classList.add("hide");
     updateTurnHighlight();
+}
+
+
+const toggleStartingPlayer = () => {
+    currentStartingPlayer = currentStartingPlayer === 'O' ? 'X' : 'O';
+}
+
+const endGame = () => {
+    const winner = checkWinner();
+    if (winner) {
+        showWinner(winner);
+    } else {
+        const isDraw = Array.from(cells).every(cell => cell.classList.contains('taken'));
+        if (isDraw) {
+            showDraw();
+        }
+    }
+    toggleStartingPlayer();
 }
 
 newGmBtn.addEventListener("click", newGame);
@@ -55,16 +74,13 @@ cells.forEach((cell) => {
             return;
         }
 
-        if (turno) {
-            cell.innerText = "O";
-        } else {
-            cell.innerText = "X"; 
-        }
-        turno = !turno; // Toggle the turn
+        cell.innerText = turno ? "O" : "X"; 
         cell.classList.add('taken');
 
-        checkWinner();
-        updateTurnHighlight(); // Update the highlight based on the new turn
+        endGame();
+        
+        turno = !turno; 
+        updateTurnHighlight();
     });
 });
 
@@ -104,17 +120,10 @@ const checkWinner = () => {
         if (cells[a].innerText &&
             cells[a].innerText === cells[b].innerText &&
             cells[a].innerText === cells[c].innerText) {
-            console.log("winner", cells[a].innerText);
-
-            showWinner(cells[a].innerText);
-            return;
+            return cells[a].innerText;
         }
     }
-
-    const isDraw = Array.from(cells).every(cell => cell.classList.contains('taken'));
-    if (isDraw) {
-        showDraw();
-    }
+    return null;
 }
 
 const showDraw = () => {

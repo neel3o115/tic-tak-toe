@@ -108,7 +108,6 @@ main {
     position: relative;
     isolation: isolate;
 }
-
 .highlight::before {
     position: absolute;
     content: "";
